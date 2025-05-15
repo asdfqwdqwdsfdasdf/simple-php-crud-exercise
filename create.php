@@ -91,23 +91,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <h2>Agregar Empleado</h2>
                     </div>
                     <p>Favor diligenciar el siguiente formulario, para agregar el empleado.</p>
+                    <!-- Formulario  -->
+                    <!-- cada campo contiene una condicion ternaria en el div que verifica la variable que almacena un error  -->
+                    <!-- input es el tag que permite el ingreso de informacion  -->
+                    <!-- span es el tag que carga el string con el mensaje de error almacenado en la variable que contiene el error  -->
+                    <!-- el action realiza un envio de datos al mismo (self) archivo php donde se ejecuta y protege el parametro de la url mediante htmlspecialchars() -->
+                    <!-- el siguiente curl permite realizar un insert mediante el metodo POST utilizando este archivo php
+                     curl -X POST http://localhost:8081/crud-php-master/create.php \
+                       -d "name=Juan" \
+                       -d "address=Calle+Falsa+123" \
+                       -d "salary=3000"
+                    -->
+
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <!-- Campo 1  -->
                         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
                             <label>Nombre</label>
                             <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                             <span class="help-block"><?php echo $name_err;?></span>
                         </div>
+                        <!-- Campo 2  -->
                         <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
                             <label>Dirección</label>
                             <textarea name="address" class="form-control"><?php echo $address; ?></textarea>
                             <span class="help-block"><?php echo $address_err;?></span>
                         </div>
+                        <!-- Campo 3  -->
                         <div class="form-group <?php echo (!empty($salary_err)) ? 'has-error' : ''; ?>">
                             <label>Sueldo</label>
                             <input type="text" name="salary" class="form-control" value="<?php echo $salary; ?>">
                             <span class="help-block"><?php echo $salary_err;?></span>
                         </div>
+                        <!-- boton  -->
                         <input type="submit" class="btn btn-primary" value="Submit">
+                        <!-- enlace  -->
                         <a href="index.php" class="btn btn-default">Cancelar</a>
                     </form>
                 </div>
