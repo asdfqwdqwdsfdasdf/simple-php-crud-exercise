@@ -99,6 +99,7 @@ los campos para que el usuario ingrese las calificaciones del 0 al  20.
 luego el programa debe recorrer las noats ingresadas mediante for y mostrar:
     el promedio, la nota mas alta, la mas baja. cantidad de notas aprobadas >=11 y desaprobadas <11
     incluir validacion de notas, noton de borrar y envio. realizalo en php
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +108,9 @@ luego el programa debe recorrer las noats ingresadas mediante for y mostrar:
 <body>
     <h2>Procesador de Notas en PHP</h2>
 
+<!--    prueba mediante curl
+    curl -X POST  http://localhost:4430/practica_php/simple-php-crud-exercise/tarea_sesion6/ejercicio-01.php -d "cantidad=2" -d "generar" -d "notas[]=13" -d "notas[]=4" -d "procesar"
+-->
     <!-- Mostrar errores -->
     <?php if (!empty($errores)): ?>
         <div style="color:red;">
