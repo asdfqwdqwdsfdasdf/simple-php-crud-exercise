@@ -1,0 +1,87 @@
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f9f9f9;
+        color: #333;
+    }
+
+    h2 {
+        color: #0056b3;
+    }
+
+    form {
+        background: #fff;
+        padding: 15px 20px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 400px;
+        margin-bottom: 30px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="email"] {
+        width: 100%;
+        padding: 8px 10px;
+        margin: 6px 0 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    form input[type="submit"] {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .button-Register{
+                background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        
+    }
+    form input[type="submit"]:hover {
+        background-color: #003d80;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    table th, table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    table a {
+        color: #0056b3;
+        text-decoration: none;
+        margin-right: 8px;
+    }
+
+    table a:hover {
+        text-decoration: underline;
+    }
