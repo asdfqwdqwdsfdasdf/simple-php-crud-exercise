@@ -86,12 +86,13 @@ historiales
  Examen Parcial 2 – Ingeniería Web
 📊RÚBRICA DE EVALUACIÓN (20 PUNTOS)
 Criterio Puntaje
-Implementación correcta del patrón Modelo-Vista-Controlador 3 pts
-Funcionalidad completa de login, sesiones, cookies y cierre automático 2 pts
-Módulo CRUD de pacientes, médicos y especialidades 3 pts
-Registro y gestión de citas con validación de conflictos 3 pts
-Registro y edición del historial clínico asociado a la cita 2 pts
-Interfaz moderna con Bootstrap y validaciones en JavaScript 3 pts
+Implementación correcta del patrón Modelo-Vista-Controlador 3 pts  🆗
+
+Funcionalidad completa de login, sesiones, cookies y cierre automático 2 pts 🆗
+Módulo CRUD de pacientes, médicos y especialidades 3 pts 🆗
+Registro y gestión de citas con validación de conflictos 3 pts 🆗
+Registro y edición del historial clínico asociado a la cita 2 pts 🆗
+Interfaz moderna con Bootstrap y validaciones en JavaScript 3 pts 🆗
 Documentación del proyecto (base de datos, manual básico de uso, demo) 2 pts
-Funcionamiento general correcto, sin errores, navegación clara 2 pts
+Funcionamiento general correcto, sin errores, navegación clara 2 pts 🆗
 TOTAL 20 pts
