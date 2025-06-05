@@ -1,11 +1,14 @@
- 
+Aquí tienes la documentación adaptada a sintaxis compatible con **Obsidian**, incluyendo descripciones breves para cada imagen, y arreglé los links de imágenes con espacios usando corchetes y comillas para que Obsidian las maneje bien:
+
+---
+
 # Proyecto: Sistema Web para Clínica "Vida Sana"
 
-**Examen Parcial 2 – Ingeniería Web**
-**Escuela Profesional:** Ingeniería de Sistemas
-**Semestre:** 2025 - 1
-**Experiencia Curricular:** Ingeniería Web Ciclo VI – B1T1
-**Docente:** Marcelino Torres Villanueva
+**Examen Parcial 2 – Ingeniería Web**  
+**Escuela Profesional:** Ingeniería de Sistemas  
+**Semestre:** 2025 - 1  
+**Experiencia Curricular:** Ingeniería Web Ciclo VI – B1T1  
+**Docente:** Marcelino Torres Villanueva  
 **Fecha:** 05/06/2025
 
 ---
@@ -20,32 +23,42 @@ La aplicación cubre funcionalidades esenciales para la clínica, tales como reg
 
 ## Tecnologías Utilizadas
 
-* **Lenguajes:** PHP 8.x, HTML5, CSS3, JavaScript
-* **Base de Datos:** MySQL/MariaDB
-* **Framework UI:** Bootstrap 5
-* **Acceso a datos:** PDO para conexiones seguras y parametrizadas
-* **Servidor Local:** XAMPP, WAMP, o similar
+- **Lenguajes:** PHP 8.x, HTML5, CSS3, JavaScript
+    
+- **Base de Datos:** MySQL/MariaDB
+    
+- **Framework UI:** Bootstrap 5
+    
+- **Acceso a datos:** PDO para conexiones seguras y parametrizadas
+    
+- **Servidor Local:** XAMPP, WAMP, o similar
+    
 
 ---
 
 ## Entidades y Base de Datos
 
-| Entidad            | Atributos principales                                           | Descripción breve                                             |
-| ------------------ | --------------------------------------------------------------- | ------------------------------------------------------------- |
-| **usuarios**       | idusuario, usuario, clave, rol                                  | Recepcionistas que administran el sistema (control de acceso) |
-| **pacientes**      | idpaciente, dni, nombres, apellidos, dirección, teléfono, email | Pacientes registrados en la clínica                           |
-| **medicos**        | idmedico, nombres, apellidos, especialidad\_id, teléfono, email | Médicos asignados a especialidades                            |
-| **especialidades** | idespecialidad, nombre                                          | Especialidades médicas                                        |
-| **citas**          | idcita, paciente\_id, medico\_id, fecha, hora, estado           | Citas médicas programadas                                     |
-| **historiales**    | idhistorial, cita\_id, diagnóstico, tratamiento, observaciones  | Historial clínico asociado a cita atendida                    |
+|Entidad|Atributos principales|Descripción breve|
+|---|---|---|
+|**usuarios**|idusuario, usuario, clave, rol|Recepcionistas que administran el sistema (control de acceso)|
+|**pacientes**|idpaciente, dni, nombres, apellidos, dirección, teléfono, email|Pacientes registrados en la clínica|
+|**medicos**|idmedico, nombres, apellidos, especialidad_id, teléfono, email|Médicos asignados a especialidades|
+|**especialidades**|idespecialidad, nombre|Especialidades médicas|
+|**citas**|idcita, paciente_id, medico_id, fecha, hora, estado|Citas médicas programadas|
+|**historiales**|idhistorial, cita_id, diagnóstico, tratamiento, observaciones|Historial clínico asociado a cita atendida|
 
 ### Reglas del negocio reflejadas en la base de datos
 
-* Un paciente puede tener muchas citas; cada cita está vinculada a un único médico y paciente.
-* Un médico solo tiene una especialidad, y una especialidad puede tener varios médicos.
-* No se permite la programación de citas duplicadas para un mismo médico en fecha y hora iguales.
-* Solo se puede generar un historial clínico cuando la cita está marcada como atendida.
-* Las sesiones de usuario expiran tras 5 minutos de inactividad para seguridad.
+- Un paciente puede tener muchas citas; cada cita está vinculada a un único médico y paciente.
+    
+- Un médico solo tiene una especialidad, y una especialidad puede tener varios médicos.
+    
+- No se permite la programación de citas duplicadas para un mismo médico en fecha y hora iguales.
+    
+- Solo se puede generar un historial clínico cuando la cita está marcada como atendida.
+    
+- Las sesiones de usuario expiran tras 5 minutos de inactividad para seguridad.
+    
 
 ---
 
@@ -125,31 +138,50 @@ END;
 DELIMITER ;
 ```
 
+### Diagrama de la base de datos
+
+![[basededatosnormalizada.png]]  
+
 ---
 
 ## Instalación y Configuración
 
 1. Clonar el repositorio en el directorio raíz del servidor local (ej. `htdocs` en XAMPP).
+    
 2. Importar la base de datos ejecutando el script SQL provisto.
+    
 3. Configurar los parámetros de conexión a la base de datos en `conexion/Conexion.php` (host, usuario, clave, nombre de BD).
-4. Abrir en navegador la URL apuntando a la carpeta `vista`, por ejemplo:
-   `http://localhost/clinica/vista/login.php`
+    
+4. Abrir en navegador la URL apuntando a la carpeta `vista`, por ejemplo:  
+    `http://localhost/clinica/vista/login.php`
+    
 5. Registrar un usuario recepcionista o utilizar el ya creado para iniciar sesión.
+    
 
 ---
 
 ## Manual Básico de Uso
 
-* **Inicio de sesión:** Acceder con usuario y contraseña. La sesión expira tras 5 minutos de inactividad para seguridad.
-* **Gestión de usuarios:** Registrar y administrar recepcionistas para controlar el acceso al sistema.
-* **Pacientes:** Crear, leer, actualizar y eliminar registros de pacientes.
-* **Especialidades:** Mantener las especialidades médicas disponibles.
-* **Médicos:** Registrar médicos asociados a una especialidad.
-* **Citas:** Programar citas seleccionando paciente, médico, fecha y hora, validando para evitar doble agenda.
-* **Historiales clínicos:** Crear y actualizar registros de diagnóstico, tratamiento y observaciones solo para citas atendidas.
-* **Saludo personalizado:** Al iniciar sesión, se muestra un mensaje de bienvenida personalizado usando cookies.
-* **Interfaz:** Responsive y moderna, optimizada para distintos dispositivos mediante Bootstrap.
-* **Validaciones:** Formularios con JavaScript para evitar errores comunes antes de enviar datos al servidor.
+- **Inicio de sesión:** Acceder con usuario y contraseña. La sesión expira tras 5 minutos de inactividad para seguridad.
+    
+- **Gestión de usuarios:** Registrar y administrar recepcionistas para controlar el acceso al sistema.
+    
+- **Pacientes:** Crear, leer, actualizar y eliminar registros de pacientes.
+    
+- **Especialidades:** Mantener las especialidades médicas disponibles.
+    
+- **Médicos:** Registrar médicos asociados a una especialidad.
+    
+- **Citas:** Programar citas seleccionando paciente, médico, fecha y hora, validando para evitar doble agenda.
+    
+- **Historiales clínicos:** Crear y actualizar registros de diagnóstico, tratamiento y observaciones solo para citas atendidas.
+    
+- **Saludo personalizado:** Al iniciar sesión, se muestra un mensaje de bienvenida personalizado usando cookies.
+    
+- **Interfaz:** Responsive y moderna, optimizada para distintos dispositivos mediante Bootstrap.
+    
+- **Validaciones:** Formularios con JavaScript para evitar errores comunes antes de enviar datos al servidor.
+    
 
 ---
 
@@ -157,66 +189,88 @@ DELIMITER ;
 
 ### Login y Autenticación
 
-![Login](./docs/login.png)
-![Login Validación](./docs/login-validacion.png)
-![Login Autenticación](./docs/login-autenticacion.png)
+![[login.png]]  
+_Pantalla de inicio de sesión con campos para usuario y contraseña._
+
+![[login-validacion.png]]  
+_Validación de campos en el formulario de inicio de sesión._
+
+![[login-autenticacion.png]]  
+_Mensaje de autenticación al iniciar sesión correctamente o con error._
 
 ### Gestión de Especialidades
 
-![Especialidades](./docs/especialidades.png)
-![Especialidad Actualizada](./docs/especialidadactualizada.png)
-![Editar Especialidad](./docs/editarespecialidad.png)
-!\[Error al eliminar especialidad]\(./docs/manejo de error especialidades No se puede eliminar la especialidad porque está asignada a uno o más médicos. .png)
+![[especialidades.png]]  
+_Listado de especialidades médicas disponibles en el sistema._
+
+![[especialidadactualizada.png]]  
+_Mensaje que confirma la actualización exitosa de una especialidad._
+
+![[editarespecialidad.png]]  
+_Formulario para editar los datos de una especialidad._
+
+![[manejo de error especialidades No se puede eliminar la especialidad porque está asignada a uno o más médicos. .png]]  
+_Mensaje de error al intentar eliminar una especialidad que está asignada a médicos._
 
 ### Gestión de Médicos
 
-![Médicos](./docs/medicos.png)
-![Agregar Médicos](./docs/agregarmedicos.png)
-![Validación Agregar Médicos](./docs/agregarmedicos-validacion-campos.png)
-![Editar Médico](./docs/medico-editar.png)
-![Eliminar Médico con citas](./docs/elminar-medico-nosepuedeeliminarmedicoconcitasasignadas.png)
-![Eliminar Médico sin citas](./docs/eliminar-medico-sincitasasignadassepuede.png)
+![[medicos.png]]  
+_Listado de médicos registrados en el sistema._
+
+![[agregarmedicos.png]]  
+_Formulario para agregar un nuevo médico._
+
+![[agregarmedicos-validacion-campos.png]]  
+_Validación de campos al agregar un médico._
+
+![[medico-editar.png]]  
+_Pantalla para editar los datos de un médico existente._
+
+![[elminar-medico-nosepuedeeliminarmedicoconcitasasignadas.png]]  
+_Error al intentar eliminar un médico con citas asignadas._
+
+![[eliminar-medico-sincitasasignadassepuede.png]]  
+_Confirmación para eliminar un médico sin citas asignadas._
 
 ### Gestión de Pacientes
 
-![Pacientes](./docs/pacientes.png)
-![Agregar Pacientes Validación](./docs/pacientes-ingresar-validacion.png)
-![Editar Paciente](./docs/pacientes-editar.png)
-![Eliminar Paciente (no se puede)](./docs/pacientes-eliminar-mensaje-nosepuedeeliminarpacienteconcitasasignadas.png)
-![Eliminar Paciente (sí se puede)](./docs/pacientes-eliminar-mensaje-sisepuedeeliminarpacientesincitasasignadas.png)
-![Eliminar Paciente](./docs/pacientes-eliminar.png)
-![Resultado Edición Paciente](./docs/pacientes-resultado-editar.png)
+![[pacientes.png]]  
+_Listado de pacientes registrados._
+
+![[pacientes-ingresar-validacion.png]]  
+_Validación de campos para agregar un paciente._
+
+![[pacientes-editar.png]]  
+_Formulario para editar un paciente._
+
+![[pacientes-eliminar-mensaje-nosepuedeeliminarpacienteconcitasasignadas.png]]  
+_Mensaje que indica que no se puede eliminar un paciente con citas asignadas._
+
+![[pacientes-eliminar-mensaje-sisepuedeeliminarpacientesincitasasignadas.png]]  
+_Mensaje que permite eliminar un paciente sin citas asignadas._
+
+![[pacientes-eliminar.png]]  
+_Confirmación para eliminar un paciente._
+
+![[pacientes-resultado-editar.png]]  
+_Resultado de la edición exitosa de un paciente._
 
 ### Gestión de Citas
 
-![Citas](./docs/citas.png)
-!\[Agregar Cita]\(./docs/agregar cita.png)
-!\[Agregar Cita Validación Campos]\(./docs/agregar cita validacion campos.png)
-!\[Agregar Citas (varias)]\(./docs/agregar citas.png)
-!\[Mensaje cita insertada]\(./docs/cita insertada.png)
-!\[Error cita duplicada]\(./docs/manejo de error Ya existe una cita para el médico seleccionado en la fecha y hora indicadas. .png)
+![[citas.png]]  
+_Listado y gestión de citas médicas programadas._
 
-### Historial Clínico
+![[agregar cita.png]]  
+_Formulario para agregar una nueva cita._
 
-!\[Historial Insertado]\(./docs/historial insertado.png)
-!\[Edición Historial Clínico]\(./docs/edicion historial clinico.png)
-!\[Resultado edición historial clínico]\(./docs/resultado edicion historial clinico.png)
-!\[Historial solo citas atendidas]\(./docs/agregar historial solo citas atendidas.png)
+![[agregar cita validacion campos.png]]  
+_Validación de campos en el formulario de agregar cita._
 
-### Otros
+![[agregar citas.png]]  
+_Vista general de varias citas agregadas._
 
-![Dashboard](./docs/dashboard.png)
-!\[Edición estado de una cita (3 estados)]\(./docs/edicion del estado de una cita 3 estados disponibles.png)
+![[cita insertada.png]]  
+_Mensaje de confirmación de cita insertada exitosamente._
 
----
-
-## Consideraciones y Buenas Prácticas
-
-* **Seguridad:** Contraseñas almacenadas con hash (bcrypt).
-* **Validación:** Se realiza tanto en frontend (JavaScript) como backend (PHP).
-* **Sesiones:** Implementación de expiración automática por inactividad para proteger acceso.
-* **Integridad:** Uso de claves foráneas y triggers para mantener consistencia en datos.
-* **UX/UI:** Interfaz clara, moderna y amigable para usuarios no técnicos.
-* **MVC:** Código organizado bajo Modelo-Vista-Controlador para facilitar mantenimiento y escalabilidad.
-
- 
+![[manejo de error Ya existe una cita para el médico seleccionado en la fecha y hora indicadas. .png]]  
+_Mensaje de error cuando se intenta agendar una cita duplicada para un médico._
