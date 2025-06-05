@@ -1,7 +1,4 @@
-Aquí tienes la documentación adaptada a sintaxis compatible con **Obsidian**, incluyendo descripciones breves para cada imagen, y arreglé los links de imágenes con espacios usando corchetes y comillas para que Obsidian las maneje bien:
-
----
-
+ 
 # Proyecto: Sistema Web para Clínica "Vida Sana"
 
 **Examen Parcial 2 – Ingeniería Web**  
