@@ -5,9 +5,14 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-require_once '../modelo/HistorialDAO.php';
-$dao = new HistorialDAO();
-$historiales = $dao->listarConDetalles();
+require_once '../modelo/CitaDAO.php';
+$citaDAO = new CitaDAO();
+
+// Traemos solo citas que están "atendida" para poder generar el historial
+$citasAtendidas = $citaDAO->listar();
+$citasDisponibles = array_filter($citasAtendidas, function($cita) {
+    return strtolower($cita['estado']) === 'atendida';
+});
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +20,7 @@ $historiales = $dao->listarConDetalles();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lista de Historiales Clínicos</title>
+  <title>Agregar Historial Clínico</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script>
     function toggleMobileMenu() {
@@ -39,7 +44,7 @@ $historiales = $dao->listarConDetalles();
           <li class="nav-item"><a class="nav-link" href="pacientes.php">Pacientes</a></li>
           <li class="nav-item"><a class="nav-link" href="medicos.php">Médicos</a></li>
           <li class="nav-item"><a class="nav-link" href="especialidades.php">Especialidades</a></li>
-          <li class="nav-item"><a class="nav-link active" href="historiales.php">Historiales</a></li>
+          <li class="nav-item"><a class="nav-link" href="historiales.php">Historiales</a></li>
           <li class="nav-item"><a class="nav-link" href="citas.php">Citas</a></li>
           <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar sesión</a></li>
         </ul>
@@ -63,51 +68,46 @@ $historiales = $dao->listarConDetalles();
   <!-- Contenido principal -->
   <div class="container mt-5">
 
-    <h1 class="mb-4 text-primary">Lista de Historiales Clínicos</h1>
+    <h1 class="mb-4 text-primary">Agregar Historial Clínico</h1>
 
-    <a href="agregar_historial.php" class="btn btn-primary mb-4">Agregar Historial</a>
+    <form action="../controlador/historialControlador.php" method="POST">
 
-    <?php if (!empty($historiales)): ?>
-    <table class="table table-striped table-bordered">
-      <thead class="table-primary">
-        <tr>
-          <th>ID Historial</th>
-          <th>Paciente</th>
-          <th>Médico</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Diagnóstico</th>
-          <th>Tratamiento</th>
-          <th>Observaciones</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($historiales as $h): ?>
-        <tr>
-          <td><?php echo htmlspecialchars($h['idhistorial']); ?></td>
-          <td><?php echo htmlspecialchars($h['paciente_nombres'] . ' ' . $h['paciente_apellidos']); ?></td>
-          <td><?php echo htmlspecialchars($h['medico_nombres'] . ' ' . $h['medico_apellidos']); ?></td>
-          <td><?php echo htmlspecialchars($h['fecha']); ?></td>
-          <td><?php echo htmlspecialchars($h['hora']); ?></td>
-          <td><?php echo htmlspecialchars($h['diagnostico']); ?></td>
-          <td><?php echo htmlspecialchars($h['tratamiento']); ?></td>
-          <td><?php echo htmlspecialchars($h['observaciones']); ?></td>
-          <td>
-            <a href="editar_historial.php?idhistorial=<?php echo $h['idhistorial']; ?>" class="btn btn-sm btn-warning">Editar</a>
-            <form action="../controlador/historialControlador.php" method="POST" style="display:inline-block;">
-              <input type="hidden" name="idhistorial" value="<?php echo $h['idhistorial']; ?>">
-              <input type="hidden" name="accion" value="Eliminar">
-              <button type="submit" onclick="return confirm('¿Está seguro de eliminar este historial?');" class="btn btn-sm btn-danger">Eliminar</button>
-            </form>
-          </td>
-        </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-    <?php else: ?>
-      <p class="text-danger">No hay historiales registrados.</p>
-    <?php endif; ?>
+      <input type="hidden" name="idhistorial" value="">
+
+      <div class="mb-3">
+        <label for="cita_id" class="form-label">Cita (solo citas atendidas)</label>
+        <select class="form-select" id="cita_id" name="cita_id" required>
+          <option value="" disabled selected>Seleccione una cita</option>
+          <?php foreach ($citasDisponibles as $cita): ?>
+            <option value="<?php echo htmlspecialchars($cita['idcita']); ?>">
+              <?php 
+                echo "ID: " . $cita['idcita'] . " | Fecha: " . $cita['fecha'] . " " . $cita['hora']; 
+              ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="diagnostico" class="form-label">Diagnóstico</label>
+        <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="tratamiento" class="form-label">Tratamiento</label>
+        <textarea class="form-control" id="tratamiento" name="tratamiento" rows="3" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+      </div>
+
+      <input type="hidden" name="accion" value="Registrar">
+
+      <button type="submit" class="btn btn-primary">Registrar Historial</button>
+      <a href="historiales.php" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
 
   </div>
 

@@ -16,11 +16,20 @@ class HistorialDAO {
     }
 
     // READ: Listar todos los historiales
-    public function listar() {
-        $sql = "SELECT * FROM historiales";
+    public function listarConDetalles() {
+        $sql = "SELECT h.idhistorial, h.cita_id, h.diagnostico, h.tratamiento, h.observaciones,
+                       c.fecha, c.hora, c.estado,
+                       p.nombres AS paciente_nombres, p.apellidos AS paciente_apellidos,
+                       m.nombres AS medico_nombres, m.apellidos AS medico_apellidos
+                FROM historiales h
+                INNER JOIN citas c ON h.cita_id = c.idcita
+                INNER JOIN pacientes p ON c.paciente_id = p.idpaciente
+                INNER JOIN medicos m ON c.medico_id = m.idmedico
+                ORDER BY c.fecha DESC, c.hora DESC";
         $con = Conexion::conectar();
         return $con->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     // READ con filtro: Buscar un historial por su ID
     public function buscar($id) {

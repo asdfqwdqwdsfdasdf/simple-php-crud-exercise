@@ -4,10 +4,6 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
 }
-
-require_once '../modelo/CitaDAO.php';
-$dao = new CitaDAO();
-$citas = $dao->listar();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +11,7 @@ $citas = $dao->listar();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lista de Citas</title>
+  <title>Agregar Especialidad</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script>
     function toggleMobileMenu() {
@@ -26,7 +22,7 @@ $citas = $dao->listar();
 </head>
 <body class="bg-light">
 
-  <!-- Navbar (igual que en otros archivos) -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow">
     <div class="container">
       <a class="navbar-brand" href="bienvenida.php">GestionVentas</a>
@@ -38,8 +34,9 @@ $citas = $dao->listar();
           <li class="nav-item"><a class="nav-link" href="bienvenida.php">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="pacientes.php">Pacientes</a></li>
           <li class="nav-item"><a class="nav-link" href="medicos.php">Médicos</a></li>
-          <li class="nav-item"><a class="nav-link active" href="citas.php">Citas</a></li>
+          <li class="nav-item"><a class="nav-link" href="citas.php">Citas</a></li>
           <li class="nav-item"><a class="nav-link" href="historiales.php">Historiales</a></li>
+          <li class="nav-item"><a class="nav-link active" href="especialidades.php">Especialidades</a></li>
           <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar sesión</a></li>
         </ul>
       </div>
@@ -54,52 +51,29 @@ $citas = $dao->listar();
       <a href="medicos.php" class="d-block text-white mb-2">Médicos</a>
       <a href="citas.php" class="d-block text-white mb-2">Citas</a>
       <a href="historiales.php" class="d-block text-white mb-2">Historiales</a>
+      <a href="especialidades.php" class="d-block text-white mb-2">Especialidades</a>
       <a href="../controlador/cerrarSesion.php" class="d-block text-white">Cerrar sesión</a>
     </div>
   </div>
 
   <!-- Contenido principal -->
   <div class="container mt-5">
-    <h1 class="mb-4 text-primary">Lista de Citas</h1>
+    <h1 class="mb-4 text-primary">Agregar Nueva Especialidad</h1>
 
-    <a href="agregar_cita.php" class="btn btn-primary mb-4">Agregar Cita</a>
+    <form action="../controlador/especialidadControlador.php" method="POST" class="bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
+      <div class="mb-3">
+        <label for="idespecialidad" class="form-label">ID de Especialidad</label>
+        <input type="text" class="form-control" id="idespecialidad" name="idespecialidad" required maxlength="10" />
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre de Especialidad</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required maxlength="100" />
+      </div>
 
-    <?php if (!empty($citas)): ?>
-    <table class="table table-striped table-bordered">
-      <thead class="table-primary">
-        <tr>
-          <th>Paciente</th>
-          <th>Médico</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($citas as $cita): ?>
-          <tr>
-            <td><?php echo htmlspecialchars($cita['paciente_nombres'] . ' ' . $cita['paciente_apellidos']); ?></td>
-            <td><?php echo htmlspecialchars($cita['medico_nombres'] . ' ' . $cita['medico_apellidos']); ?></td>
-            <td><?php echo htmlspecialchars($cita['fecha']); ?></td>
-            <td><?php echo htmlspecialchars($cita['hora']); ?></td>
-            <td><?php echo htmlspecialchars($cita['estado']); ?></td>
-            <td>
-              <a href="editar_cita.php?idcita=<?php echo $cita['idcita']; ?>" class="btn btn-sm btn-warning">Editar</a>
-
-              <form action="../controlador/citaControlador.php" method="POST" style="display:inline-block;">
-                <input type="hidden" name="idcita" value="<?php echo $cita['idcita']; ?>">
-                <input type="hidden" name="accion" value="Eliminar">
-                <button type="submit" onclick="return confirm('¿Está seguro de eliminar esta cita?');" class="btn btn-sm btn-danger">Eliminar</button>
-              </form>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-    <?php else: ?>
-      <p class="text-danger">No hay citas registradas.</p>
-    <?php endif; ?>
+      <input type="hidden" name="accion" value="Registrar" />
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="especialidades.php" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

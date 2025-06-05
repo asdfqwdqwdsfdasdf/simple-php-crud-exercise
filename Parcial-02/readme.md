@@ -28,16 +28,16 @@ de sesiones.
 
 ⚖️REGLAS DEL NEGOCIO
 Estas reglas deben guiar el diseño de la lógica del sistema:
-1. Un paciente puede tener muchas citas médicas.   [✅]
-2. Una cita solo puede ser asignada a un médico.   [✅]
-3. Un médico pertenece a una única especialidad.   [✅]
-4. Una especialidad puede tener varios médicos.   [✅]
-5. Una cita debe estar asociada a un paciente y a un médico.   [✅]
-6. Una vez atendida la cita, se debe generar el historial clínico correspondiente.   [✅] ('pendiente', 'atendida', 'cancelada')
+1. Un paciente puede tener muchas citas médicas.  
+2. Una cita solo puede ser asignada a un médico.  
+3. Un médico pertenece a una única especialidad. 
+4. Una especialidad puede tener varios médicos.    
+5. Una cita debe estar asociada a un paciente y a un médico.   
+6. Una vez atendida la cita, se debe generar el historial clínico correspondiente.    
 7. No puede registrarse una cita en el mismo día y hora para un médico que ya tiene una cita
-asignada.   [✅] UNIQUE KEY unico_cita_medico_fecha_hora (medico_id, fecha, hora)
+asignada.    
 8. El sistema es administrado por recepcionistas, quienes deben iniciar sesión para poder realizar
-todas las operaciones.   [✅]
+todas las operaciones.   
 9. Se debe mostrar un mensaje de bienvenida personalizado al usuario que inicia sesión utilizando
 cookies.
 10. Si el usuario está inactivo por más de 5 minutos, la sesión debe cerrarse automáticamente.

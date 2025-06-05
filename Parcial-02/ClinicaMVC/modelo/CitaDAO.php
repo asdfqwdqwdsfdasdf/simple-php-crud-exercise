@@ -17,10 +17,17 @@ class CitaDAO {
 
     // READ: Listar todas las citas
     public function listar() {
-        $sql = "SELECT * FROM citas";
+        $sql = "SELECT c.*, 
+                       p.nombres AS paciente_nombres, p.apellidos AS paciente_apellidos,
+                       m.nombres AS medico_nombres, m.apellidos AS medico_apellidos
+                FROM citas c
+                LEFT JOIN pacientes p ON c.paciente_id = p.idpaciente
+                LEFT JOIN medicos m ON c.medico_id = m.idmedico
+                ORDER BY c.fecha DESC, c.hora DESC";
         $con = Conexion::conectar();
         return $con->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     // READ con filtro: Buscar una cita por su ID
     public function buscar($id) {

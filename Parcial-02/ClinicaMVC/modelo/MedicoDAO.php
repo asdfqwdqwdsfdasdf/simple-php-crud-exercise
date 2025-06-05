@@ -17,10 +17,13 @@ class MedicoDAO {
 
     // READ: Listar todos los médicos
     public function listar() {
-        $sql = "SELECT * FROM medicos";
+        $sql = "SELECT m.*, e.nombre AS especialidad_nombre
+                FROM medicos m
+                LEFT JOIN especialidades e ON m.especialidad_id = e.idespecialidad";
         $con = Conexion::conectar();
         return $con->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     // READ con filtro: Buscar un médico por su ID
     public function buscar($id) {
