@@ -23,6 +23,18 @@ if (isset($_SESSION['ultima_actividad'])) {
     }
 }
 
+
+if (isset($_GET['msg'])) {
+  if ($_GET['msg'] == 'success') {
+      echo '<div class="alert alert-success">Operación realizada con éxito.</div>';
+  } elseif ($_GET['msg'] == 'error') {
+      $detalle = isset($_GET['detalle']) ? htmlspecialchars($_GET['detalle']) : "Error desconocido";
+      echo '<div class="alert alert-danger">' . $detalle . '</div>';
+  }
+}
+
+ 
+
 // Actualizamos la marca de tiempo de la última actividad
 $_SESSION['ultima_actividad'] = time();
 

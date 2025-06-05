@@ -47,7 +47,7 @@
 
   <main class="login-card text-center">
     <!-- Logo opcional -->
-    <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Logo Clínica" class="logo mx-auto d-block" />
+    <img src="https://cdn-icons-png.flaticon.com/512/2975/2975235.png" alt="Logo Clínica" class="logo mx-auto d-block" />
     
     <h2 class="mb-4 fw-bold text-primary">Iniciar Sesión</h2>
 

@@ -26,6 +26,17 @@ if (isset($_SESSION['ultima_actividad'])) {
 // Actualizamos la marca de tiempo de la última actividad
 $_SESSION['ultima_actividad'] = time();
 
+if (isset($_GET['msg'])) {
+  if ($_GET['msg'] == 'success') {
+      echo '<div class="alert alert-success">Operación realizada con éxito.</div>';
+  } elseif ($_GET['msg'] == 'error') {
+      $detalle = isset($_GET['detalle']) ? htmlspecialchars($_GET['detalle']) : "Error desconocido";
+      echo '<div class="alert alert-danger">' . $detalle . '</div>';
+  }
+}
+
+ 
+
 require_once '../modelo/MedicoDAO.php';
 $dao = new MedicoDAO();
 $medicos = $dao->listar();

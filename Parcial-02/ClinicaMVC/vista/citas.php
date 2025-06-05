@@ -23,6 +23,13 @@ if (isset($_SESSION['ultima_actividad'])) {
     }
 }
 
+if (isset($_GET['error'])) {
+  $detalle = htmlspecialchars($_GET['error']);
+  echo '<div class="alert alert-danger">' . $detalle . '</div>';
+} elseif (isset($_GET['msg']) && $_GET['msg'] == 'success') {
+  echo '<div class="alert alert-success">Operación realizada con éxito.</div>';
+}
+
 // Actualizamos la marca de tiempo de la última actividad
 $_SESSION['ultima_actividad'] = time();
 
@@ -46,6 +53,7 @@ $citas = $dao->listar();
   </script>
 </head>
 <body class="bg-light">
+ 
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">

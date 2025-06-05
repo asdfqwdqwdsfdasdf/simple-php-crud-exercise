@@ -1,7 +1,4 @@
-Claro, aquí tienes la documentación mejorada, formal y adaptada al contexto del examen y requisitos del caso clínico “Vida Sana”:
-
----
-
+ 
 # Proyecto: Sistema Web para Clínica "Vida Sana"
 
 **Examen Parcial 2 – Ingeniería Web**
@@ -32,8 +29,6 @@ La aplicación cubre funcionalidades esenciales para la clínica, tales como reg
 ---
 
 ## Entidades y Base de Datos
-
-### Entidades Principales
 
 | Entidad            | Atributos principales                                           | Descripción breve                                             |
 | ------------------ | --------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -158,16 +153,60 @@ DELIMITER ;
 
 ---
 
-## Demo Visual (Ejemplos de pantallas)
+## Demo Visual (Ejemplos de pantallas y validaciones)
 
-* **Pantalla de Login**
-  ![Login](./docs/login.png)
+### Login y Autenticación
 
-* **Listado de Médicos**
-  ![Medicos](./docs/medicos.png)
+![Login](./docs/login.png)
+![Login Validación](./docs/login-validacion.png)
+![Login Autenticación](./docs/login-autenticacion.png)
 
-* **Agenda de Citas**
-  ![Citas](./docs/citas.png)
+### Gestión de Especialidades
+
+![Especialidades](./docs/especialidades.png)
+![Especialidad Actualizada](./docs/especialidadactualizada.png)
+![Editar Especialidad](./docs/editarespecialidad.png)
+!\[Error al eliminar especialidad]\(./docs/manejo de error especialidades No se puede eliminar la especialidad porque está asignada a uno o más médicos. .png)
+
+### Gestión de Médicos
+
+![Médicos](./docs/medicos.png)
+![Agregar Médicos](./docs/agregarmedicos.png)
+![Validación Agregar Médicos](./docs/agregarmedicos-validacion-campos.png)
+![Editar Médico](./docs/medico-editar.png)
+![Eliminar Médico con citas](./docs/elminar-medico-nosepuedeeliminarmedicoconcitasasignadas.png)
+![Eliminar Médico sin citas](./docs/eliminar-medico-sincitasasignadassepuede.png)
+
+### Gestión de Pacientes
+
+![Pacientes](./docs/pacientes.png)
+![Agregar Pacientes Validación](./docs/pacientes-ingresar-validacion.png)
+![Editar Paciente](./docs/pacientes-editar.png)
+![Eliminar Paciente (no se puede)](./docs/pacientes-eliminar-mensaje-nosepuedeeliminarpacienteconcitasasignadas.png)
+![Eliminar Paciente (sí se puede)](./docs/pacientes-eliminar-mensaje-sisepuedeeliminarpacientesincitasasignadas.png)
+![Eliminar Paciente](./docs/pacientes-eliminar.png)
+![Resultado Edición Paciente](./docs/pacientes-resultado-editar.png)
+
+### Gestión de Citas
+
+![Citas](./docs/citas.png)
+!\[Agregar Cita]\(./docs/agregar cita.png)
+!\[Agregar Cita Validación Campos]\(./docs/agregar cita validacion campos.png)
+!\[Agregar Citas (varias)]\(./docs/agregar citas.png)
+!\[Mensaje cita insertada]\(./docs/cita insertada.png)
+!\[Error cita duplicada]\(./docs/manejo de error Ya existe una cita para el médico seleccionado en la fecha y hora indicadas. .png)
+
+### Historial Clínico
+
+!\[Historial Insertado]\(./docs/historial insertado.png)
+!\[Edición Historial Clínico]\(./docs/edicion historial clinico.png)
+!\[Resultado edición historial clínico]\(./docs/resultado edicion historial clinico.png)
+!\[Historial solo citas atendidas]\(./docs/agregar historial solo citas atendidas.png)
+
+### Otros
+
+![Dashboard](./docs/dashboard.png)
+!\[Edición estado de una cita (3 estados)]\(./docs/edicion del estado de una cita 3 estados disponibles.png)
 
 ---
 
@@ -180,16 +219,4 @@ DELIMITER ;
 * **UX/UI:** Interfaz clara, moderna y amigable para usuarios no técnicos.
 * **MVC:** Código organizado bajo Modelo-Vista-Controlador para facilitar mantenimiento y escalabilidad.
 
----
-
-## Contacto
-
-Para dudas, sugerencias o mejoras, contactar con el desarrollador:
-**Email:** [tu-email@dominio.com](mailto:tu-email@dominio.com)
-
----
-
-## Agradecimientos
-
-Proyecto desarrollado como parte del Examen Parcial 2 de la asignatura Ingeniería Web, ciclo 2025-1.
  
